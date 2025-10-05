@@ -8,7 +8,9 @@ from typing import Dict, Any, Tuple, List
 from datetime import date, timedelta
 
 # --- CONFIGURAÇÕES DO BANCO DE DADOS ---
-NEON_CONNECTION_STRING = "COLE_A_SUA_CONNECTION_STRING_DO_NEON_AQUI"
+# MODIFICADO: Suas variáveis antigas foram removidas
+# ADICIONADO: Sua nova string de conexão com o banco de dados na nuvem (Neon)
+NEON_CONNECTION_STRING = "postgresql://neondb_owner:npg_EfqtyYGx5S1T@ep-super-glade-ac01z9h4-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 # --- OPÇÕES DE SELEÇÃO (SELECTBOX) ---
 PIGMENTO_OPTIONS = ['Branco', 'Preto', 'Azul', 'Rosa', 'Vermelho', 'Laranja', 'Amarelo', 'Verde', 'Transparente']
@@ -21,11 +23,11 @@ MATERIAL_OPTIONS = ['Fosco', 'Brilho', 'PP']
 
 def get_db_connection():
     try:
-        # MODIFICADO: Agora usa a connection string para se conectar
+        # MODIFICADO: Agora usa a nova string para se conectar
         conn = psycopg2.connect(NEON_CONNECTION_STRING)
         return conn
     except Exception as e:
-        st.error(f"Erro ao conectar com o banco de dados: {e}")
+        st.error(f"Erro ao conectar com o banco de dados na nuvem: {e}")
         return None
 
 def get_next_document_numbers():
